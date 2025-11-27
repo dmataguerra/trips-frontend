@@ -44,7 +44,7 @@ export interface Trip {
 	tripDate: Date,
 	tripTime: string,
 	tripPrice: number,
-	route: string,
+	route: Route,
 	bus: string,
 	tripSeats: string[];
 	// route: Route,
