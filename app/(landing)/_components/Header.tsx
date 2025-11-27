@@ -1,50 +1,53 @@
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
+import Image from "next/image";
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@nextui-org/react";
 
 export const AcmeLogo = () => {
   return (
-    <svg fill="none" height="36" viewBox="0 0 32 32" width="36">
-      <path
-        clipRule="evenodd"
-        d="M17.6482 10.1305L15.8785 7.02583L7.02979 22.5499H10.5278L17.6482 10.1305ZM19.8798 14.0457L18.11 17.1983L19.394 19.4511H16.8453L15.1056 22.5499H24.7272L19.8798 14.0457Z"
-        fill="currentColor"
-        fillRule="evenodd"
-      />
-    </svg>
+    <Image
+      src="/images/chihuahuenos-logo.svg"
+      alt="Chihuahueños logo"
+      width={40}
+      height={40}
+      priority={false}
+    />
   );
 };
 
 export default function Header() {
   return (
-    <Navbar shouldHideOnScroll>
+    <Navbar shouldHideOnScroll className="bg-hero_bg ">
       <NavbarBrand>
         <AcmeLogo />
-        <p className="font-bold text-inherit">ACME</p>
+        <p className="font-bold text-text_primary ml-2">Chihuahenses</p>
       </NavbarBrand>
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
+      <NavbarContent className="hidden sm:flex gap-6" justify="center">
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <a className="text-text_primary/90 hover:text-text_primary" href="#">
             Features
-          </Link>
+          </a>
         </NavbarItem>
         <NavbarItem isActive>
-          <Link aria-current="page" href="#">
+          <a className="text-text_primary font-semibold" aria-current="page" href="#">
             Customers
-          </Link>
+          </a>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
+          <a className="text-text_primary/90 hover:text-text_primary" href="#">
             Integrations
-          </Link>
+          </a>
         </NavbarItem>
       </NavbarContent>
-      <NavbarContent justify="end">
+      <NavbarContent justify="end" className="items-center">
         <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
+          <a className="text-text_primary/90 hover:text-text_primary" href="#">Login</a>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
+          <a
+            href="#"
+            className="inline-flex items-center px-4 py-2 bg-primary hover:bg-accent text-white rounded-md shadow-sm focus:outline-none focus:ring-4 focus:ring-focus transition"
+          >
             Sign Up
-          </Button>
+          </a>
         </NavbarItem>
       </NavbarContent>
     </Navbar>

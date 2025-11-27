@@ -31,7 +31,7 @@ export default function SignupPage() {
     };
 
     return (
-        <div className="flex flex-col justify-center bg-green-100 w-[60vh] h-[60vh] px-10 py-2 rounded-lg">
+        <div className="flex flex-col justify-center bg-surface w-[60vh] h-[60vh] px-10 py-2 rounded-lg text-text_primary">
             <form onSubmit={handleSubmit}>
                 <p className="text-2xl my-4 text-center">
                     <b>Crear cuenta</b>
@@ -69,7 +69,7 @@ export default function SignupPage() {
 
                 <div className="flex flex-col gap-2 items-center">
                     <Button 
-                        className="bg-green-400 text-white"
+                        className="bg-primary hover:bg-accent active:bg-primary_dark text-white"
                         type="submit"
                         disabled={submitting}
                     >
