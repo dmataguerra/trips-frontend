@@ -3,6 +3,7 @@ import { API_URL } from "@/constants";
 import { Button, Input, Spinner } from "@nextui-org/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Header from "../_components/Header";
 
 export default function LoginPage() {
     const [submitting, setSubmitting] = useState(false)
@@ -34,9 +35,9 @@ export default function LoginPage() {
         return;
     }
     return (
-        <div className="flex flex-col justify-center bg-surface w-[60vh] h-[50vh] px-10 py-2 rounded-lg text-text_primary">
+        <div className="flex flex-col justify-center bg-primary_dark shadow-md w-[60vh] h-[50vh] px-10 py-2 rounded-lg text-text_primary">
             <form onSubmit={handleSubmit}>
-                <p className="text-2xl my-4 text-center">
+                <p className="text-2xl my-4 text-center text-white">
                     <b>Iniciar sesión</b>
                 </p>
 

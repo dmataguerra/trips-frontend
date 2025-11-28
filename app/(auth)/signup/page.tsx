@@ -31,9 +31,9 @@ export default function SignupPage() {
     };
 
     return (
-        <div className="flex flex-col justify-center bg-surface w-[60vh] h-[60vh] px-10 py-2 rounded-lg text-text_primary">
+        <div className="flex flex-col justify-center bg-primary_dark shadow-md w-[60vh] h-[50vh] px-10 py-2 rounded-lg text-text_primary">
             <form onSubmit={handleSubmit}>
-                <p className="text-2xl my-4 text-center">
+                <p className="text-2xl my-4 text-center text-white">
                     <b>Crear cuenta</b>
                 </p>
 
