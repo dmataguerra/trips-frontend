@@ -59,7 +59,7 @@ export default function Carousel() {
 	}
 
 	return (
-		<section className="py-12 bg-neutral-100">
+		<section id="destinations" className="py-12 bg-neutral-100">
 			<div className="max-w-7xl mx-auto px-4">
 				<div className="bg-gray-100 rounded-xl p-6 relative">
 					<h2 className="text-center font-semibold text-lg md:text-2xl">A dónde te gustaría viajar?</h2>

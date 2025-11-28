@@ -48,7 +48,7 @@ export default function HeroSection() {
     }, [wordIndex]);
 
     return (
-        <section className="bg-gradient-to-r from-white to-gradient_max min-h-screen flex items-center">
+        <section id="hero" className="bg-gradient-to-r from-white to-gradient_max min-h-screen flex items-center">
             <div className="max-w-7xl mx-auto px-6 py-12 w-full grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div>
                     <h1 className="text-4xl sm:text-5xl font-extrabold text-text_primary leading-tight">
