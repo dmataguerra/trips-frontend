@@ -2,7 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@nextui-org/react";
+import { API_URL } from "@/constants";
 
 const AcmeLogo = () => (
   <Image
@@ -15,6 +17,21 @@ const AcmeLogo = () => (
 );
 
 export default function DashboardHeader() {
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    try {
+      await fetch(`${API_URL}/auth/logout`, {
+        method: "POST",
+        credentials: "include",
+      });
+
+      router.push("/");
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
+  };
+  
   return (
     <Navbar shouldHideOnScroll className="bg-hero_bg">
       <NavbarBrand>
@@ -36,14 +53,13 @@ export default function DashboardHeader() {
         </NavbarItem>
 
         <NavbarItem>
-          <form action="/logout" method="post">
             <button
               type="submit"
               className="inline-flex items-center px-4 py-2 bg-gray-200 hover:bg-gray-300 text-text_primary rounded-md shadow-sm focus:outline-none focus:ring-4 focus:ring-focus transition"
+              onClick={handleLogout}
             >
               Logout
             </button>
-          </form>
         </NavbarItem>
       </NavbarContent>
     </Navbar>
