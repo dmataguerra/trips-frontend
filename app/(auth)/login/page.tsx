@@ -3,7 +3,6 @@ import { API_URL } from "@/constants";
 import { Button, Input, Spinner } from "@nextui-org/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Header from "../_components/Header";
 
 export default function LoginPage() {
     const [submitting, setSubmitting] = useState(false)
@@ -22,12 +21,13 @@ export default function LoginPage() {
             const response = await fetch(`${API_URL}/auth/login`, {
                 method: "POST",
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    credentials: "include",
                 },
                 body: JSON.stringify(authData),
                 credentials: "include",
             })
-            if (response.status === 201) router.push(`/dashboard`)
+            if (response.ok) router.push(`/dashboard`)
             setSubmitting(false);
         } catch (e) {
             setSubmitting(false);
