@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Button } from "@nextui-org/react";
+import Link from "next/link";
 
 export default function HeroSection() {
     const words = ["Monterrey", "Guadalajara", "Ciudad de México"];
@@ -65,7 +66,9 @@ export default function HeroSection() {
                     </p>
 
                     <div className="mt-8 flex items-center gap-6">
-                        <Button color = "primary">Comprar Boletos</Button>
+                        <Link href="/login" className="inline-block">
+                            <Button color="primary">Comprar Boletos</Button>
+                        </Link>
                     </div>
                 </div>
 

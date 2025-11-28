@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Card, CardFooter, Button } from "@nextui-org/react";
 
 type Route = {
@@ -35,15 +36,17 @@ export default function RouteCard({ route }: { route: Route }) {
           )}
         </div>
 
-        <Button
-          className="text-xs text-white bg-black/20 backdrop-blur-sm z-30"
-          color="default"
-          radius="lg"
-          size="sm"
-          variant="flat"
-        >
-          Ver ruta
-        </Button>
+        <Link href="/login" className="z-30">
+          <Button
+            className="text-xs text-white bg-black/20 backdrop-blur-sm"
+            color="default"
+            radius="lg"
+            size="sm"
+            variant="flat"
+          >
+            Ver ruta
+          </Button>
+        </Link>
       </CardFooter>
     </Card>
   );
