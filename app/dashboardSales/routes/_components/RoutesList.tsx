@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Card, CardBody, Spinner } from "@nextui-org/react";
 import { API_URL } from "@/constants";
+import Link from "next/link";
 
 export default function RoutesList() {
   const [routes, setRoutes] = useState<any[]>([]);
@@ -36,10 +37,12 @@ export default function RoutesList() {
     <div className="space-y-4">
       {routes.map((route) => (
         <Card key={route.routeId} shadow="sm" className="border border-gray-200">
-          <CardBody className="space-y-1 text-sm">
-            <p><b>Origen:</b> {route.routeOrigin}</p>
-            <p><b>Destino:</b> {route.routeDestination}</p>
-          </CardBody>
+          <Link href={`/dashboardSales/routes/${route.routeId}`}>
+            <CardBody className="space-y-1 text-sm">
+              <p><b>Origen:</b> {route.routeOrigin}</p>
+              <p><b>Destino:</b> {route.routeDestination}</p>
+            </CardBody>
+          </Link>
         </Card>
       ))}
 
