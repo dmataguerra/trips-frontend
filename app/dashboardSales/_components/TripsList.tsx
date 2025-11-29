@@ -34,7 +34,7 @@ export default function TripsList() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="h-[80vh] overflow-y-auto space-y-4">
       {trips.map((trip) => (
         <Card key={trip.tripId} shadow="sm" className="border border-gray-200">
           <Link href={`/dashboardSales/trips/${trip.tripId}`}>
