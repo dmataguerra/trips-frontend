@@ -45,7 +45,7 @@ export default function DashboardHeader() {
       <NavbarContent justify="end" className="items-center gap-3">
         <NavbarItem>
           <a
-            href="/dashboard2/buses"
+            href="/dashboardSales/buses"
             className="inline-flex items-center px-4 py-2 bg-white text-text_primary border border-gray-200 hover:bg-gray-50 rounded-md shadow-sm focus:outline-none focus:ring-4 focus:ring-focus transition"
           >
             Buses
@@ -53,7 +53,7 @@ export default function DashboardHeader() {
         </NavbarItem>
         <NavbarItem>
           <a
-            href="/dashboard2/routes"
+            href="/dashboardSales/routes"
             className="inline-flex items-center px-4 py-2 bg-white text-text_primary border border-gray-200 hover:bg-gray-50 rounded-md shadow-sm focus:outline-none focus:ring-4 focus:ring-focus transition"
           >
             Rutas
@@ -61,7 +61,7 @@ export default function DashboardHeader() {
         </NavbarItem>
         <NavbarItem>
           <a
-            href="/dashboard2/trips"
+            href="/dashboardSales/trips"
             className="inline-flex items-center px-4 py-2 bg-white text-text_primary border border-gray-200 hover:bg-gray-50 rounded-md shadow-sm focus:outline-none focus:ring-4 focus:ring-focus transition"
           >
             Viajes
