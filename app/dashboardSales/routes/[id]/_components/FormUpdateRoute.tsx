@@ -3,11 +3,12 @@
 import { useState } from "react";
 import { Button, Card, CardBody, Input } from "@nextui-org/react";
 import { API_URL } from "@/constants";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function FormUpdateRoute() {
     const { id } = useParams();
+    const router = useRouter();
 
     const [loading, setLoading] = useState(true);
 
@@ -48,6 +49,19 @@ export default function FormUpdateRoute() {
         alert("Ruta actualizada");
     };
 
+    const handleDelete = async () => {
+        const confirmDelete = confirm("¿Seguro que deseas eliminar esta ruta?");
+        if (!confirmDelete) return;
+
+        await fetch(`${API_URL}/routes/${id}`, {
+            method: "DELETE",
+        });
+
+        alert("Ruta eliminada");
+
+        router.push("/dashboardSales/routes");
+    };
+
     if (loading) return <p>Cargando datos...</p>;
 
     return (
@@ -71,6 +85,10 @@ export default function FormUpdateRoute() {
 
                     <Button type="submit" color="primary" className="w-full">
                         Guardar cambios
+                    </Button>
+
+                    <Button color="danger" className="w-full" onPress={handleDelete}>
+                    Eliminar viaje
                     </Button>
                 </form>
             </CardBody>
