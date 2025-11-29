@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Card, CardBody, Spinner } from "@nextui-org/react";
 import { API_URL } from "@/constants";
+import Link from "next/link";
 
 export default function TripsList() {
   const [trips, setTrips] = useState<any[]>([]);
@@ -36,13 +37,15 @@ export default function TripsList() {
     <div className="space-y-4">
       {trips.map((trip) => (
         <Card key={trip.tripId} shadow="sm" className="border border-gray-200">
-          <CardBody className="space-y-1 text-sm">
-            <p><b>Ruta:</b> {trip.route?.routeOrigin} - {trip.route?.routeDestination}</p>
-            <p><b>Camión:</b> {trip.bus?.busName}</p>
-            <p><b>Fecha:</b> {trip.tripDate}</p>
-            <p><b>Hora:</b> {trip.tripTime}</p>
-            <p><b>Precio:</b> ${trip.tripPrice}</p>
-          </CardBody>
+          <Link href={`/dashboardSales/trips/${trip.tripId}`}>
+            <CardBody className="space-y-1 text-sm">
+              <p><b>Ruta:</b> {trip.route?.routeOrigin} - {trip.route?.routeDestination}</p>
+              <p><b>Camión:</b> {trip.bus?.busName}</p>
+              <p><b>Fecha:</b> {trip.tripDate}</p>
+              <p><b>Hora:</b> {trip.tripTime}</p>
+              <p><b>Precio:</b> ${trip.tripPrice}</p>
+            </CardBody>
+          </Link>
         </Card>
       ))}
 

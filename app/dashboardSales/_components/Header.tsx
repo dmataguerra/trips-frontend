@@ -61,7 +61,7 @@ export default function DashboardHeader() {
         </NavbarItem>
         <NavbarItem>
           <a
-            href="/dashboardSales/trips"
+            href="/dashboardSales"
             className="inline-flex items-center px-4 py-2 bg-white text-text_primary border border-gray-200 hover:bg-gray-50 rounded-md shadow-sm focus:outline-none focus:ring-4 focus:ring-focus transition"
           >
             Viajes
