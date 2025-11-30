@@ -1,7 +1,9 @@
 import { Trip } from "@/entities";
 import { Card, CardBody, Button } from "@nextui-org/react";
+import { useRouter } from "next/navigation";
 
 export default function TripCard({ trip }: { trip: Trip }) {
+  const router = useRouter();
 
   const [year, month, day] = trip.tripDate.split("-");
   const tripDate = new Date(Number(year), Number(month) - 1, Number(day));
@@ -29,9 +31,7 @@ export default function TripCard({ trip }: { trip: Trip }) {
           <Button
             className="bg-green-600 text-white"
             size="sm"
-            onClick={() => {
-              /* Accin pendiente: navegacion o modal para elegir asientos */
-            }}
+            onClick={() => router.push(`/dashboard/trips/${trip.tripId}/seats`)}
           >
             Elegir Asientos
           </Button>
