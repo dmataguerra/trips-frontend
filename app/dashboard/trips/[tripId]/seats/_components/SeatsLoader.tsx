@@ -20,11 +20,8 @@ export default function SeatsLoader({ tripId }: { tripId: string }) {
       setLoading(true);
       try {
         const url = `${API_URL}/tripseats/trip/${tripId}`;
-        console.log("SeatsLoader: fetching seats", url);
         const res = await fetch(url, { credentials: "include" });
-        console.log("SeatsLoader: fetch status", res.status);
         if (!res.ok) {
-          console.error("SeatsLoader: fetch failed", res.status);
           throw new Error("Error fetching seats");
         }
         const data = await res.json().catch(() => null);
@@ -37,7 +34,7 @@ export default function SeatsLoader({ tripId }: { tripId: string }) {
           if (mounted) setSeats([]);
         }
       } catch (e) {
-        console.error("SeatsLoader: error fetching seats", e);
+        // ignore fetch error; show empty list
         if (mounted) setSeats([]);
       } finally {
         if (mounted) setLoading(false);
@@ -58,33 +55,21 @@ export default function SeatsLoader({ tripId }: { tripId: string }) {
       let userId: string | undefined = undefined;
       try {
         // Helpful debug: check cookies and localStorage before calling /auth/me
-        try {
-          console.log("SeatsLoader: document.cookie ->", document.cookie);
-        } catch (cErr) {
-          console.warn("SeatsLoader: cannot read document.cookie", cErr);
-        }
-        try {
-          console.log("SeatsLoader: localStorage token ->", localStorage.getItem("token"));
-          console.log("SeatsLoader: localStorage userId ->", localStorage.getItem("userId"));
-        } catch (sErr) {
-          console.warn("SeatsLoader: cannot read localStorage", sErr);
-        }
+
+        // check cookies/localStorage silently
 
         // If we have a cached userId in localStorage use it as a fast path
         try {
           const cached = localStorage.getItem("userId");
           if (cached) {
             userId = cached;
-            console.log("SeatsLoader.handleProceed: using cached userId", userId);
           }
-        } catch (e) {
-          console.warn("SeatsLoader: error reading cached userId", e);
+        } catch (_e) {
+          // ignore
         }
 
         if (!userId) {
-          console.log(`SeatsLoader.handleProceed: calling ${API_URL}/auth/me with credentials`);
           const meRes = await fetch(`${API_URL}/auth/me`, { credentials: "include" });
-          console.log("SeatsLoader.handleProceed: /auth/me status", meRes.status);
           try {
             // try to read text for richer debug (in case backend returns non-json)
             const meText = await meRes.text().catch(() => null);
@@ -94,23 +79,23 @@ export default function SeatsLoader({ tripId }: { tripId: string }) {
             } catch (e) {
               meBody = { raw: meText };
             }
-            console.log("SeatsLoader.handleProceed: /auth/me body", meBody);
+            // ignore me body for debug
             if (meRes.ok && meBody) {
               userId = meBody?.userId || meBody?.id || meBody?.user?.id || meBody?.userId;
               if (userId) {
-                try { localStorage.setItem('userId', userId); } catch (e) { console.warn('Cannot write localStorage userId', e) }
+                try { localStorage.setItem('userId', userId); } catch (_e) { }
               }
             }
-          } catch (inner) {
-            console.warn("SeatsLoader.handleProceed: error parsing /auth/me response", inner);
+          } catch (_inner) {
+            // ignore
           }
         }
       } catch (err) {
-        console.warn("SeatsLoader.handleProceed: error fetching /auth/me", err);
+        // ignore
       }
 
       if (!userId) {
-        console.warn("SeatsLoader.handleProceed: userId not found. Cookies and /auth/me might be misconfigured.");
+        // userId not found
         alert("No se encontró usuario autenticado. Inicia sesión o proporciona userId. Revisa que las cookies se estén enviando y que el backend exponga /auth/me.");
         setReserving(false);
         return;
@@ -118,17 +103,16 @@ export default function SeatsLoader({ tripId }: { tripId: string }) {
 
       const url = `${API_URL}/tripseats/${selectedSeat}/reserve`;
       const payload = { userId };
-      console.log("SeatsLoader.handleProceed: POST", url, payload);
+      
       // Include Authorization header from localStorage token if present (backend may accept it)
       const headers: Record<string,string> = { "Content-Type": "application/json" };
       try {
         const token = localStorage.getItem('token');
         if (token) {
           headers['Authorization'] = `Bearer ${token}`;
-          console.log('SeatsLoader: using token from localStorage for Authorization header');
         }
-      } catch (e) {
-        console.warn('SeatsLoader: cannot read token from localStorage', e);
+      } catch (_e) {
+        // ignore
       }
 
       const res = await fetch(url, {
@@ -137,15 +121,13 @@ export default function SeatsLoader({ tripId }: { tripId: string }) {
         credentials: "include",
         body: JSON.stringify(payload),
       });
-      console.log("SeatsLoader.handleProceed: status", res.status);
       const text = await res.text().catch(() => "");
       let body: any = null;
       try {
         body = text ? JSON.parse(text) : null;
-      } catch (e) {
+      } catch (_e) {
         body = { raw: text };
       }
-      console.log("SeatsLoader.handleProceed: body", body);
 
       if (res.status === 200 || res.status === 201) {
         // success
@@ -153,11 +135,10 @@ export default function SeatsLoader({ tripId }: { tripId: string }) {
         // try to extract reservationId from response body under common keys
         const reservationId = body?.reservationId || body?.id || body?.reservation?.id || body?.reservationId;
         try {
-          // store raw reservation body and id to localStorage as a fallback
           localStorage.setItem('lastReservation', JSON.stringify(body ?? {}));
           if (reservationId) localStorage.setItem('reservationId', reservationId);
-        } catch (e) {
-          console.warn('SeatsLoader: cannot write reservation to localStorage', e);
+        } catch (_e) {
+          // ignore
         }
         // navigate to reservation page; include query param when we have id
         router.push(`/dashboard/reservation${reservationId ? `?reservationId=${reservationId}` : ""}`);
@@ -175,7 +156,7 @@ export default function SeatsLoader({ tripId }: { tripId: string }) {
           const d = await r.json().catch(() => []);
           setSeats(Array.isArray(d) ? d : d?.seats ?? []);
         } catch (inner) {
-          console.error("SeatsLoader.handleProceed: reload error", inner);
+          // ignore reload error
         } finally {
           setLoading(false);
         }
@@ -185,7 +166,6 @@ export default function SeatsLoader({ tripId }: { tripId: string }) {
       // other errors
       throw new Error(body?.error || "No se pudo reservar");
     } catch (e) {
-      console.error("SeatsLoader.handleProceed: error", e);
       alert((e as any)?.message || "Error reservando asiento");
     } finally {
       setReserving(false);
