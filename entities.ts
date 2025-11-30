@@ -62,7 +62,7 @@ export interface Tripseat {
 	reservedAt?: Date,
 	reservedBy?: string,
 	trip: string,
-	busSeat: string,
+	busSeat: Busseat | string,
 	bookings: string[];
 	// reservedBy?: User,
 	// trip: Trip,
