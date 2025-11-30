@@ -1,5 +1,6 @@
 import Header from "../../_components/Header";
 import FormUpdateRoute from "./_components/FormUpdateRoute";
+import TripsListR from "./_components/TripsListR";
 
 export default function RoutePage() {
     return (
@@ -7,8 +8,12 @@ export default function RoutePage() {
             <Header />
 
             <div className="flex flex-1 p-6 gap-6">
-                <div className="flex-1">
+                <div className="w-1/3 min-w-[300px]">
                     <FormUpdateRoute />
+                </div>
+
+                <div className="flex-1 overflow-y-auto">
+                    <TripsListR />
                 </div>
             </div>
         </div>
