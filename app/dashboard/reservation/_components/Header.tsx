@@ -31,7 +31,7 @@ export default function DashboardHeader() {
       console.error("Error during logout:", error);
     }
   };
-  
+
   return (
     <Navbar shouldHideOnScroll className="bg-hero_bg">
       <NavbarBrand>
@@ -53,13 +53,13 @@ export default function DashboardHeader() {
         </NavbarItem>
 
         <NavbarItem>
-            <button
-              type="submit"
-              className="inline-flex items-center px-4 py-2 bg-gray-200 hover:bg-gray-300 text-text_primary rounded-md shadow-sm focus:outline-none focus:ring-4 focus:ring-focus transition"
-              onClick={handleLogout}
-            >
-              Logout
-            </button>
+          <button
+            type="submit"
+            className="inline-flex items-center px-4 py-2 bg-gray-200 hover:bg-gray-300 text-text_primary rounded-md shadow-sm focus:outline-none focus:ring-4 focus:ring-focus transition"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
         </NavbarItem>
       </NavbarContent>
     </Navbar>

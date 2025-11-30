@@ -4,12 +4,13 @@ import { useEffect, useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { API_URL } from "@/constants";
 
+//Utilizamos un tipo reservation debido a la complicación de no tener una entidad como tal de reservations.
 type Reservation = {
   reservationId: string;
   tripId: string;
   tripSeatId: string;
-  status: string; // held | confirmed | cancelled
-  expiresAt?: string; // ISO
+  status: string;
+  expiresAt?: string;
 };
 
 export default function ReservationClient({ reservationId }: { reservationId?: string }) {
@@ -42,7 +43,7 @@ export default function ReservationClient({ reservationId }: { reservationId?: s
     let mounted = true;
     const fetchReservation = async () => {
       setLoading(true);
-      const headers: Record<string,string> = { 'Content-Type': 'application/json' };
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       const token = localStorage.getItem('token');
       if (token) headers['Authorization'] = `Bearer ${token}`;
       const res = await fetch(`${API_URL}/reservations/${resolvedReservationId}`, { credentials: 'include', headers });
