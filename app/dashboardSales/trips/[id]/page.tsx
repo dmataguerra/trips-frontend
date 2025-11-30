@@ -1,3 +1,4 @@
+import Footer from "../../_components/Footer";
 import Header from "../../_components/Header";
 import FormUpdateTrip from "./_components/FormUpdateTrip";
 
@@ -11,6 +12,7 @@ export default function TripPage() {
                     <FormUpdateTrip />
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 }

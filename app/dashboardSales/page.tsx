@@ -1,3 +1,4 @@
+import Footer from "./_components/Footer";
 import Header from "./_components/Header";
 import NewTrip from "./_components/NewTrip";
 import TripsList from "./_components/TripsList";
@@ -16,6 +17,7 @@ export default function DashboardSales() {
           <TripsList />
         </div>
       </div>
+       <Footer />
     </div>
   );
 }
