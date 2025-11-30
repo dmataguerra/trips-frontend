@@ -35,6 +35,7 @@ export default function RoutesList() {
 
   return (
     <div className="h-[80vh] overflow-y-auto space-y-4">
+      <h1 className="text-center text-2xl font-bold text-green-800">Todas las rutas</h1>
       {routes.map((route) => (
         <Card key={route.routeId} shadow="sm" className="border border-gray-200">
           <Link href={`/dashboardSales/routes/${route.routeId}`}>

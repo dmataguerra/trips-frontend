@@ -40,6 +40,7 @@ export default function TripsListR() {
 
   return (
     <div className="h-[80vh] overflow-y-auto space-y-4">
+      <h1 className="text-center text-2xl font-bold text-green-800">Viajes con esta ruta</h1>
       {trips.length > 0 &&
         trips.map((trip) => (
           <Card key={trip.tripId} shadow="sm" className="border border-gray-200">
