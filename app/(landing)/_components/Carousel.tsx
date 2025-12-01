@@ -3,9 +3,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import RouteCard from "./RouteCard";
 import { ROUTES } from "../../../data/mock/routes";
+import { API_URL } from "@/constants";
 
 export default function Carousel() {
-	const slides = ROUTES;
+	const [slides, setSlides] = useState(ROUTES);
 
 	const trackRef = useRef<HTMLDivElement | null>(null);
 	const slideRef = useRef<HTMLDivElement | null>(null);
@@ -14,6 +15,28 @@ export default function Carousel() {
 	const [visible, setVisible] = useState<number>(1);
 	const [maxIndex, setMaxIndex] = useState<number>(0);
 	const [isTransitioning, setIsTransitioning] = useState<boolean>(true);
+
+	useEffect(() => {
+		const fetchRoutes = async () => {
+			try {
+				const res = await fetch(`${API_URL}/routes`);
+				const data = await res.json();
+				const withImage = data.filter((route: any) => route.image);
+				if (withImage.length >= 5) {
+					const mapped = withImage.slice(0, 10).map((route: any) => ({
+						id: route.routeId,
+						origin: route.routeOrigin,
+						destination: route.routeDestination,
+						image: route.image,
+					}));
+					setSlides(mapped);
+				}
+			} catch (error) {
+				console.error("Error fetching routes:", error);
+			}
+		};
+		fetchRoutes();
+	}, []);
 
 	useEffect(() => {
 		function updateMeasurements() {

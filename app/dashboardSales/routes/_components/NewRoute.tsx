@@ -7,24 +7,24 @@ import { API_URL } from "@/constants";
 export default function NewRoute() {
   const [routeOrigin, setRouteOrigin] = useState("");
   const [routeDestination, setRouteDestination] = useState("");
+  const [image, setImage] = useState<File | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const payload = {
-      routeOrigin,
-      routeDestination,
-    };
+    const formData = new FormData();
+    formData.append('routeOrigin', routeOrigin);
+    formData.append('routeDestination', routeDestination);
+    if (image) {
+      formData.append('image', image);
+    }
 
     await fetch(`${API_URL}/routes`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
+      body: formData,
     });
 
-    console.log(payload);
+    console.log({ routeOrigin, routeDestination, image });
     alert("Ruta registrada");
   };
 
@@ -44,6 +44,13 @@ export default function NewRoute() {
             type="text"
             value={routeDestination}
             onChange={(e) => setRouteDestination(e.target.value)}
+          />
+
+          <Input
+            label="Imagen (opcional)"
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImage(e.target.files?.[0] || null)}
           />
 
 

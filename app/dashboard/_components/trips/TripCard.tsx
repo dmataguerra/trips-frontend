@@ -1,5 +1,5 @@
 import { Trip } from "@/entities";
-import { Card, CardBody, Button } from "@nextui-org/react";
+import { Card, CardBody, Button, Image } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 
 export default function TripCard({ trip }: { trip: Trip }) {
@@ -8,8 +8,13 @@ export default function TripCard({ trip }: { trip: Trip }) {
   const [year, month, day] = trip.tripDate.split("-");
   const tripDate = new Date(Number(year), Number(month) - 1, Number(day));
 
+  const imgSrc = trip.route?.image ? (trip.route.image as string) : "/images/trip_match.jpg";
+
   return (
     <Card className="border shadow-md">
+      <div className="w-full h-40 relative overflow-hidden rounded-t-md bg-gray-100">
+        <Image removeWrapper src={imgSrc} classNames={{ img: "object-cover w-full h-full" }} />
+      </div>
       <CardBody>
         <h3 className="text-xl font-bold text-green-700">
           {trip.route.routeOrigin} - {trip.route.routeDestination}

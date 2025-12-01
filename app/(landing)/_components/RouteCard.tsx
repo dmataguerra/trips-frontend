@@ -1,8 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
-import { Card, CardFooter, Button } from "@nextui-org/react";
+import { Card, CardFooter, Button, Image } from "@nextui-org/react";
 
 type Route = {
   id: string;
@@ -20,11 +19,10 @@ export default function RouteCard({ route }: { route: Route }) {
     <Card isFooterBlurred className="border-none relative overflow-hidden max-w-[320px] mx-auto h-[320px] md:h-[380px]" radius="lg">
       <div className="absolute inset-0">
         <Image
-          alt={`${route.origin} a ${route.destination}`}
-          className="object-cover"
-          fill
-          sizes="(max-width: 640px) 280px, (max-width: 768px) 340px, 420px"
+          removeWrapper
           src={src}
+          alt={`${route.origin} a ${route.destination}`}
+          classNames={{ img: "object-cover w-full h-full" }}
         />
       </div>
 

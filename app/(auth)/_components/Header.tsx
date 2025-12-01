@@ -26,7 +26,7 @@ export default function Header() {
       </NavbarBrand>
       <NavbarContent justify="end" className="items-center">
         <NavbarItem className="hidden lg:flex">
-          <a className="text-text_primary/90 hover:text-text_primary" href="/">Home</a>
+          <a className="text-text_primary/90 hover:text-text_primary" href="/">Inicio</a>
         </NavbarItem>
         <NavbarItem>
           

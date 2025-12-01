@@ -48,7 +48,7 @@ export default function DashboardHeader() {
             href="/dashboard/bookings"
             className="inline-flex items-center px-4 py-2 bg-white text-text_primary border border-gray-200 hover:bg-gray-50 rounded-md shadow-sm focus:outline-none focus:ring-4 focus:ring-focus transition"
           >
-            My bookings
+            Mis reservas
           </a>
         </NavbarItem>
 
@@ -58,7 +58,7 @@ export default function DashboardHeader() {
             className="inline-flex items-center px-4 py-2 bg-gray-200 hover:bg-gray-300 text-text_primary rounded-md shadow-sm focus:outline-none focus:ring-4 focus:ring-focus transition"
             onClick={handleLogout}
           >
-            Logout
+            Cerrar sesión
           </button>
         </NavbarItem>
       </NavbarContent>
