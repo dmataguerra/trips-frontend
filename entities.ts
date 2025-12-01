@@ -22,9 +22,9 @@ export interface Bus {
 	busId: string,
 	busName: string,
 	seats: string[],
-	trips: string[];
+	// trips: string[];
 	// seats: Busseat[],
-	// trips: Trip[];
+	trips: Trip[];
 }
 
 export interface Busseat {
