@@ -61,12 +61,12 @@ export interface Tripseat {
 	// status: TripSeatStatus,
 	reservedAt?: Date,
 	reservedBy?: string,
-	trip: string,
-	busSeat: Busseat | string,
+	// trip: string,
+	// busSeat: Busseat | string,
 	bookings: string[];
 	// reservedBy?: User,
-	// trip: Trip,
-	// busSeat: Busseat,
+	trip: Trip,
+	busSeat: Busseat,
 	// bookings: Booking[];
 }
 
@@ -74,8 +74,8 @@ export interface Booking {
 	bookingId: string,
 	tripSeatId: string,
 	userId: string,
-	tripSeat: string,
-	user: string;
-	// tripSeat: Tripseat,
-	// user: User;
+	// tripSeat: string,
+	// user: string;
+	tripSeat: Tripseat,
+	user: User;
 }

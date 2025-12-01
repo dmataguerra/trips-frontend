@@ -53,6 +53,15 @@ export default function DashboardHeader() {
         </NavbarItem>
 
         <NavbarItem>
+          <a
+            href="/dashboard/verify"
+            className="inline-flex items-center px-4 py-2 bg-white text-text_primary border border-gray-200 hover:bg-gray-50 rounded-md shadow-sm focus:outline-none focus:ring-4 focus:ring-focus transition"
+          >
+            Verify me
+          </a>
+        </NavbarItem>
+
+        <NavbarItem>
             <button
               type="submit"
               className="inline-flex items-center px-4 py-2 bg-gray-200 hover:bg-gray-300 text-text_primary rounded-md shadow-sm focus:outline-none focus:ring-4 focus:ring-focus transition"
