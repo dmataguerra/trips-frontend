@@ -13,6 +13,6 @@ export async function searchTrips(filters: any) {
   if (origin) params.append("origin", origin);
   if (destination) params.append("destination", destination);
 
-  const res = await fetch(`${API_URL}/trips?${params.toString()}`);
+  const res = await fetch(`${API_URL}/trips/search?${params.toString()}`);
   return res.json();
 }
