@@ -8,16 +8,13 @@ export default function AuthLayout({
 }>) {
     return (
         <>
-        <div className="w-screen h-screen overflow-hidden flex flex-col bg-gradient-to-r from-white to-gradient_max">
-            <Header />
-            <div className="flex justify-center items-center w-full h-full">
-                {children}
+            <div className="w-screen min-h-screen flex flex-col bg-gradient-to-r from-white to-gradient_max">
+                <Header />
+                <div className="flex justify-center items-center w-full flex-1 py-40">
+                    {children}
+                </div>
+                <Footer />
             </div>
-            <Footer />
-        </div>
-        
         </>
     )
 }
-
-// className="bg-gradient-to-r from-white to-gradient_max min-h-screen flex items-center"
