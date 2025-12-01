@@ -12,7 +12,7 @@ export default function AuthButton() {
 
   
   const targetPath = isLogin ? "/signup" : "/login";
-  const buttonText = isLogin ? "Sign Up" : "Login";
+  const buttonText = isLogin ? "Registrarse" : "Entrar";
 
   return (
     <Button

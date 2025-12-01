@@ -39,14 +39,14 @@ export default function Header() {
       </NavbarContent>
       <NavbarContent justify="end" className="items-center">
         <NavbarItem className="hidden lg:flex">
-          <a className="text-text_primary/90 hover:text-text_primary" href="../../login">Login</a>
+          <a className="text-text_primary/90 hover:text-text_primary" href="../../login">Entrar</a>
         </NavbarItem>
         <NavbarItem>
           <a
             href="../../signup"
             className="inline-flex items-center px-4 py-2 bg-primary hover:bg-accent text-white rounded-md shadow-sm focus:outline-none focus:ring-4 focus:ring-focus transition"
           >
-            Sign Up
+            Registrarse
           </a>
         </NavbarItem>
       </NavbarContent>
