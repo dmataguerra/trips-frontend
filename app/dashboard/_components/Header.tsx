@@ -35,7 +35,7 @@ export default function DashboardHeader() {
   return (
     <Navbar shouldHideOnScroll className="bg-hero_bg">
       <NavbarBrand>
-        <Link href="http://localhost:3000" className="inline-flex items-center">
+        <Link href="/dashboard" className="inline-flex items-center">
           <AcmeLogo />
           <p className="font-bold text-text_primary ml-2">S.A. de C.V.</p>
         </Link>

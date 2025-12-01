@@ -1,18 +1,9 @@
 import Image from "next/image";
+import { AcmeLogo } from "./Header";
 
-const AcmeLogo = () => (
-  <Image
-    src="/images/chihuahuenos-logo.svg"
-    alt="Chihuahueños logo"
-    width={40}
-    height={40}
-    priority={false}
-  />
-);
-
-export default function DashboardFooter() {
+export default function Footer() {
   return (
-    <footer className="bg-hero_bg mt-12">
+    <footer id="footer" className="bg-hero_bg mt-12">
       <div className="max-w-7xl mx-auto px-4 py-8 flex flex-col md:flex-row items-center md:items-start justify-between gap-4">
         <div className="flex items-center gap-3">
           <AcmeLogo />
